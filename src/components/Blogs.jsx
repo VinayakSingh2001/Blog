@@ -1,9 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 
-const Blogs = () => {
+const Blogs = ({ blogs }) => {
+    console.log("Blogpage")
+    console.log(blogs)
 
-    const blogs = [
+    const blogs1 = [
         {
             "id": 1,
             "title": "blog1",
@@ -42,8 +44,21 @@ const Blogs = () => {
             <div className='max-w-[1240px] mx-auto '>
                 <div className='grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 gap-8 px-4 text-black'>
 
+                    {blogs.data.map((blog) =>
+                        <Link to={`/blog/${blog.id}`}>
+                            <div className='bg-white rounded-xl overflow-hidden drop-shadow-md cursor-pointer'>
+                                <img className='h-56 w-full object-cover' src={`http://localhost:1337${blog.attributes.coverImg.data.attributes.url}`} alt="" />
+                                <div className='p-8'>
+                                    <h3 className='font-bold text-2xl my-1'>{blog.attributes.blogTitle}</h3>
+                                    <p className='text-gray-600 text-xl '>{blog.attributes.blogDesc}</p>
+                                </div>
+                            </div>
+                        </Link>
 
-                    {blogs.map((blog) =>
+                    )}
+
+
+                    {/* {blogs1.map((blog) =>
                         <Link to={`/blog/${blog.id}`}>
                             <div className='bg-white rounded-xl overflow-hidden drop-shadow-md cursor-pointer'>
                                 <img className='h-56 w-full object-cover' src={blog.coverImg} alt="" />
@@ -54,7 +69,7 @@ const Blogs = () => {
                             </div>
                         </Link>
 
-                    )}
+                    )} */}
 
 
                 </div>
